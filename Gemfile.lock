@@ -220,10 +220,10 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  pg (~> 1.1)
+  pg (~> 1.4.3)
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
-  redis (~> 4.0)
+  redis (~> 4.8)
   selenium-webdriver
   sprockets-rails
   stimulus-rails
@@ -233,7 +233,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 3.1.0p0
 
 BUNDLED WITH
    2.3.14
