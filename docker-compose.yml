@@ -16,7 +16,7 @@ services:
     ports:
       - "9999:3000"
     # This maps the /root/work directory inside the Docker
-    # container to our hosts directory, /root/work
+    # container to our hosts directory, /Users/stove/Documents/Projects/awear
     # which is what allows us to share files between
     # our computer and the Docker container.
     #
@@ -27,7 +27,7 @@ services:
     # The second volume is our dependencies-cache as mentioned in the Dockerfile
     volumes:
       - type: bind
-        source: "/root/work"
+        source: "/Users/stove/Documents/Projects/awear"
         target: "/root/work"
         consistency: "delegated"
       - type: volume
