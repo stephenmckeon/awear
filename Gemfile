@@ -6,15 +6,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 # Brakeman analyzes our code for security vulnerabilities
-gem "brakeman"
+gem 'brakeman'
+
+# bundler-audit checks our dependencies for vulnerabilities
+gem "bundler-audit"
 
 # lograge changes Rails' logging to a more
 # traditional one-line-per-event format
-gem "lograge"
+gem 'lograge'
 
 # Ruby < 3.0 included rexml by default, but now
 # it's a separate gem that is required for running tests
-gem "rexml"
+gem 'rexml'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.3', '>= 7.0.3.1'
@@ -70,6 +73,20 @@ group :development, :test do
   # development and testing
   gem 'dotenv-rails'
 
+  # Foreman runs all processes for local development
+  gem "foreman"
+
+  # Rails test suite
+  gem 'rspec-rails'
+
+  # We use Faker to generate values for attributes
+  # in each factory
+  gem "faker"
+
+  # We use Factory Bot in place of fixtures
+  # to generate realistic test data
+  gem "factory_bot_rails"
+
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
@@ -82,6 +99,8 @@ group :development do
 
   gem 'overcommit'
 
+  gem "pry-rails"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -91,7 +110,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'b'
+  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end

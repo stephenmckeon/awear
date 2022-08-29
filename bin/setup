@@ -1,7 +1,27 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
 def setup
+  if ENV['CI'] == 'true'
+    log 'Running in CI environment'
+
+    log 'Creating .env.development.local'
+    File.open('.env.development.local','w') do |file|
+      file.puts 'REDIS_URL=redis://ci-redis:3456/1'
+    end
+
+    log 'Creating .env.test.local'
+    File.open('.env.test.local','w') do |file|
+      file.puts 'REDIS_URL=redis://ci-redis:3456/2'
+    end
+  elsif ENV['CI'] != nil
+    # Detect if what we believe to be true about the CI env var
+    # is, in fact, still the case.
+    fail "Problem: CI is set to #{ENV['CI']}, but we expect ' +
+          'either 'true' or nil"
+  else
+    log 'Assuming we are running in a local development environment'
+  end
+
   log 'Installing gems'
   # Only do bundle install if the much-faster
   # bundle check indicates we need to
@@ -31,13 +51,11 @@ def help
   log ''
   log '  bin/run'
   log '     # run app locally'
-  # START:edit:3
   log ''
   log '  LOGRAGE_IN_DEVELOPMENT=true bin/run'
   log '     # run app locally using'
   log '     # production-like logging'
   log ''
-  # END:edit:3
   log ''
   log '  bin/ci'
   log '     # runs all tests and checks as CI would'
