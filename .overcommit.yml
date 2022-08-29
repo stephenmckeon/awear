@@ -44,7 +44,7 @@ PostCheckout:
   BundleInstall:
     enabled: true
 
-PrePush:
-  RSpec:
-    enabled: true
-    command: ['bundle', 'exec', 'rspec']
+# PrePush:
+#   RSpec:
+#     enabled: true
+#     command: ['bundle', 'exec', 'rspec']
