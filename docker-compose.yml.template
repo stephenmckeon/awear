@@ -2,8 +2,8 @@ version: "3.7"
 services:
   # This is the name of the container
   # we'll connect to to run commands
-  awear:
-    image: stephenmckeon/awear:version0.0
+  REPO:
+    image: ACCOUNT/REPO:TAG
     # This says to basically start up the container
     # and do nothing, since we know we're
     # going to connect to it from our computer
@@ -11,12 +11,12 @@ services:
     # This maps the port we've exposed from inside
     # the Docker container to the given local
     # port on our host, i.e. requests to our
-    # localhost for 9999 will be served
-    # by whatever is running in the container on 3000
+    # localhost for LOCAL_PORT will be served
+    # by whatever is running in the container on EXPOSE
     ports:
-      - "9999:3000"
-    # This maps the /root/work directory inside the Docker
-    # container to our hosts directory, /root/work
+      - "LOCAL_PORT:EXPOSE"
+    # This maps the WORKDIR directory inside the Docker
+    # container to our hosts directory, VOLUME_SOURCE
     # which is what allows us to share files between
     # our computer and the Docker container.
     #
@@ -27,8 +27,8 @@ services:
     # The second volume is our dependencies-cache as mentioned in the Dockerfile
     volumes:
       - type: bind
-        source: "/root/work"
-        target: "/root/work"
+        source: "VOLUME_SOURCE"
+        target: "WORKDIR"
         consistency: "delegated"
       - type: volume
         target: /usr/dependencies-cache
