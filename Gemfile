@@ -5,10 +5,19 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.0'
 
+# Brakeman analyzes our code for security vulnerabilities
+gem 'brakeman'
+
+# lograge changes Rails' logging to a more
+# traditional one-line-per-event format
+gem 'lograge'
+
+# Ruby < 3.0 included rexml by default, but now
+# it's a separate gem that is required for running tests
+gem 'rexml'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.3', '>= 7.0.3.1'
-
-gem 'rexml', '~> 3.2', '>= 3.2.5'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -55,7 +64,12 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+
+  # All runtime config comes from the UNIX environment
+  # but we use dotenv to store that in files for
+  # development and testing
   gem 'dotenv-rails'
+
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
